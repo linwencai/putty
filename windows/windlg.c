@@ -328,7 +328,7 @@ static HTREEITEM treeview_insert(struct treeview_faff *faff,
 #endif
     ins.INSITEM.mask = TVIF_TEXT | TVIF_PARAM;
     ins.INSITEM.pszText = text;
-    ins.INSITEM.cchTextMax = strlen(text)+1;
+    ins.INSITEM.cchTextMax = strlen(text)*2+1;
     ins.INSITEM.lParam = (LPARAM)path;
     newitem = TreeView_InsertItem(faff->treeview, &ins);
     if (level > 0)
