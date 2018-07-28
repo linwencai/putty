@@ -393,10 +393,10 @@ char *staticwrap(struct ctlpos *cp, HWND hwnd, char *text, int *lines)
     RECT r;
     HFONT oldfont, newfont;
 
-    ret = snewn(1+strlen(text), char);
+    ret = snewn(strlen(text)*2+1, char);
     p = text;
     q = ret;
-    pwidths = snewn(1+strlen(text), INT);
+    pwidths = snewn(strlen(text)*2+1, INT);
 
     /*
      * Work out the width the text will need to fit in, by doing
