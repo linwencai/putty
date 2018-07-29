@@ -22,15 +22,15 @@
 
 #include <commctrl.h>
 
-#define GAPBETWEEN 3
-#define GAPWITHIN 1
+#define GAPBETWEEN 2	// 水平间隔
+#define GAPWITHIN 2		// 高度间隔
 #define GAPXBOX 7
 #define GAPYBOX 4
 #define DLGWIDTH 168
 #define STATICHEIGHT 8
-#define TITLEHEIGHT 12
-#define CHECKBOXHEIGHT 9
-#define RADIOHEIGHT 9
+#define TITLEHEIGHT 14	// 标题控件的高度
+#define CHECKBOXHEIGHT 9	// 复选框的高度
+#define RADIOHEIGHT 9	// 单选按钮的高度
 #define EDITHEIGHT 12
 #define LISTHEIGHT 11
 #define LISTINCREMENT 8

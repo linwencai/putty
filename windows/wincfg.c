@@ -103,10 +103,10 @@ void win_setup_config_box(struct controlbox *b, HWND *hwndp, int has_help,
      */
     s = ctrl_getset(b, "终端/键盘", "features",
 		    "使用附加键盘特性：");
-    ctrl_checkbox(s, "AltGr acts as Compose key", 't',
+    ctrl_checkbox(s, "AltGr 动作为组合键", 't',
 		  HELPCTX(keyboard_compose),
 		  conf_checkbox_handler, I(CONF_compose_key));
-    ctrl_checkbox(s, "Control-Alt is different from AltGr", 'd',
+    ctrl_checkbox(s, "Ctrl+Alt 键与 AltGr 不同(D)", 'd',
 		  HELPCTX(keyboard_ctrlalt),
 		  conf_checkbox_handler, I(CONF_ctrlaltkeys));
 
