@@ -1,6 +1,7 @@
-# putty： Telnet/SSH 客户端
+# PuTTY 开源的跨平台 Telnet/SSH 客户端
 
 #### 项目介绍
-PuTTY 是自由的跨平台 Telnet/SSH 客户端，同时在 Win32 和 Unix 系统下模拟 xterm 终端。其主要作者是 Simon Tatham。
+添加了自动登陆密码和汉化
 
-官网：[putty.org](https://www.putty.org)
+原作者: [Simon Tatham](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
+汉化参考：[http://code.google.com/p/puttycn](https://github.com/larryli/putty)
