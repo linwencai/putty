@@ -1983,6 +1983,14 @@ void setup_config_box(struct controlbox *b, int midsession,
 			     HELPCTX(connection_loghost),
 			     conf_editbox_handler, I(CONF_loghost), I(1));
 	    }
+
+		{
+		s = ctrl_getset(b, "连接", "winscp",
+			"其他");
+		c = ctrl_editbox(s, "winscp执行文件路径", 'w', 100,
+			HELPCTX(connection_winscp),
+			conf_editbox_handler, I(CONF_winscp), I(1));
+		}
 	}
 
 	/*

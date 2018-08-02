@@ -53,6 +53,7 @@
 #define IDM_FULLSCREEN	0x0180
 #define IDM_PASTE     0x0190
 #define IDM_SPECIALSEP 0x0200
+#define IDM_WINSCP   0x0210
 
 #define IDM_SPECIAL_MIN 0x0400
 #define IDM_SPECIAL_MAX 0x0800
@@ -343,6 +344,35 @@ static void close_session(void *ignored_context)
 	InsertMenu(popup_menus[i].menu, IDM_DUPSESS, MF_BYCOMMAND | MF_ENABLED,
 		   IDM_RESTART, "重启会话(&R)");
     }
+}
+
+void showwinscp(HWND hwnd)
+{
+   int ret;
+   char res[200];
+   char parameter[200];
+
+   sprintf(parameter, "sftp://%s:%s@%s:%d",
+	   conf_get_str(conf, CONF_username),
+	   conf_get_str(conf, CONF_password),
+	   conf_get_str(conf, CONF_host),
+	   conf_get_int(conf, CONF_port)
+	   );
+   ret = (int)ShellExecute(hwnd, "open",
+      conf_get_str(conf, CONF_winscp),
+      parameter,
+      0, SW_SHOWDEFAULT);
+   
+   if (ret <= 32){
+	  sprintf(res, "错误代码：%d\n路径：%s\n参数：%s", ret, conf_get_str(conf, CONF_winscp), parameter);
+      if (ret == ERROR_FILE_NOT_FOUND){
+		  MessageBox(NULL, res, "未找到WinSCP", MB_OK); 
+	  }else if (ret == ERROR_PATH_NOT_FOUND){
+		  MessageBox(NULL, res, "WinSCP路径错误", MB_OK); 
+	  }else{
+		  MessageBox(NULL, res, "错误", MB_OK); 
+	  }
+   }
 }
 
 int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmdline, int show)
@@ -835,6 +865,7 @@ int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmdline, int show)
 	    AppendMenu(m, (conf_get_int(conf, CONF_resize_action)
 			   == RESIZE_DISABLED) ? MF_GRAYED : MF_ENABLED,
 		       IDM_FULLSCREEN, "全屏(&F)");
+	    AppendMenu(m, MF_ENABLED, IDM_WINSCP, "Winscp(&Z)");
 	    AppendMenu(m, MF_SEPARATOR, 0, 0);
 	    if (has_help())
 		AppendMenu(m, MF_ENABLED, IDM_HELP, "帮助(&H)");
@@ -2147,6 +2178,9 @@ static LRESULT CALLBACK WndProc(HWND hwnd, UINT message,
 	switch (wParam & ~0xF) {       /* low 4 bits reserved to Windows */
 	  case IDM_SHOWLOG:
 	    showeventlog(hwnd);
+	    break;
+	  case IDM_WINSCP:
+	    showwinscp(hwnd);
 	    break;
 	  case IDM_NEWSESS:
 	  case IDM_DUPSESS:

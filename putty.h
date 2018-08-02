@@ -751,6 +751,7 @@ void cleanup_exit(int);
     X(STR, STR, environmt) \
     X(STR, NONE, username) \
 	X(STR, NONE, password) \
+	X(STR, NONE, winscp) \
     X(INT, NONE, username_from_env) \
     X(STR, NONE, localusername) \
     X(INT, NONE, rfc_environ) \
