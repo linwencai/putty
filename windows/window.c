@@ -5838,6 +5838,14 @@ int get_userpass_input(prompts_t *p, const unsigned char *in, int inlen)
 {
     int ret;
     ret = cmdline_get_passwd_input(p, in, inlen);
+
+	/* add auto-login password */
+	if (ret == -1 && strlen(conf_get_str(conf, CONF_password)) != 0){
+		ret = 1;
+		prompt_set_result(p->prompts[0], conf_get_str(conf, CONF_password));
+	}
+	/* end auto-login password */
+
     if (ret == -1)
 	ret = term_get_userpass_input(term, p, in, inlen);
     return ret;
